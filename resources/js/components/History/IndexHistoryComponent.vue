@@ -30,7 +30,7 @@
                 { title: 'borrowing_date' },
                 { title: 'deadline_date' },
                 { title: 'return_date' },
-                { title: 'penalty' },
+                { title: 'penalty(Kes)' },
                 ],
                 rows: [],
                 history: [],
@@ -53,7 +53,7 @@
         row.push(item.borrowing_date);
         row.push(item.deadline_date);
         if (item.return_date==null) {
-           row.push( `<a href="/api/history/edit/${item.id}"class="btn btn-danger">Return Dvd</a>`); 
+           row.push( `<a href="/api/history/edit/${item.hid}"class="btn btn-danger">Return Dvd</a>`); 
         }
         else{
             row.push(item.return_date); 

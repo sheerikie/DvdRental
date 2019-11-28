@@ -20,11 +20,10 @@ class HistoryController extends Controller
      
 
         $total = History::
+        select('histories.id as hid','histories.*','dvds.*','customers.name as name','customers.*')->
         join('customers', 'histories.customer_id', '=', 'customers.national_id')->
         join('dvds', 'histories.dvd_id', '=', 'dvds.id')->
         get();
-
-       
         return new HistoryCollection($total);
     }
 
@@ -58,15 +57,22 @@ class HistoryController extends Controller
         $query=$request->input('dvd_title');
     
         $dvd= Dvd::where('catalog','like','%'.$query.'%')->first();
+        $borrowing_date=date('Y-m-d h:i:s a', strtotime($request->input('borrowing_date')));
+        $deadline_date=date('Y-m-d h:i:s a', strtotime($request->input('deadline_date')));
+        
         
         $history = new History();
         //On left field name in DB and on right field name in Form/view
         //$check->patient_id= $request->input('patient_id');
         $history->customer_id = $request->input('national_id');
         $history->dvd_id = $dvd->id;
-        $history->borrowing_date= $request->input('borrowing_date');
-        $history->deadline_date = $request->input('deadline_date');
+        $history->borrowing_date= $borrowing_date;
+        $history->deadline_date = $deadline_date;
         $history->save();
+
+        $dvd=Dvd::where('id',$dvd->id)->first();
+        $answer=$dvd->availability - 1;
+        Dvd::where('id', $dvd->id)->update(array('availability' => $answer));
 
       return response()->json('successfully added');
     }
@@ -90,11 +96,22 @@ class HistoryController extends Controller
      */
     public function edit($id)
     {
+     $current_date=date("Y-m-d h:i:s a", time());
  
-       $item = History::find($id);
-       $item->return_date=date("Y-m-d h:i:s a", time());
-       $item->save();
+       $item = History::findOrFail($id);
 
+       if ($current_date > $item->deadline_date) {
+        $time=strtotime($current_date)-strtotime($item->deadline_date);
+        $days=$time/(floor(60*60*24));
+       $penalty=5* $days;
+       $item->penalty=(floor($penalty));
+       }
+       $item->return_date=$current_date;
+       $item->save();
+     
+       $dvd=Dvd::where('id',$item->dvd_id)->first();
+       $answer=$dvd->availability + 1;
+       Dvd::where('id', $dvd->id)->update(array('availability' => $answer));
        return redirect()->back()->with('success', 'History updated!');
     }
 

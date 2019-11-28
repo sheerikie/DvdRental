@@ -65,6 +65,12 @@ import ReturnDvdComponent from './components/Dvd/ReturnDvdsComponent.vue';
 import CreateCustomersComponent from './components/Customer/CreateCustomersComponent.vue';
 import IndexCustomersComponent from './components/Customer/IndexCustomersComponent.vue';
 //import EditCustomerComponent from './components/Customer/EditDvdComponent.vue';
+
+import LoginComponent from './components/Auth/LoginComponent.vue';
+import RegisterComponent from './components/Auth/RegisterComponent.vue';
+
+
+
 import swal from 'sweetalert2';
 window.swal = swal;
 window.Fire = new Vue();
@@ -129,6 +135,17 @@ const routes = [
         name: 'CustomerIndex',
         path: '/customers',
         component: IndexCustomersComponent
+    },
+    //Auth
+    {
+        name: 'Login',
+        path: '/login',
+        component: LoginComponent
+    },
+    {
+        name: 'Register',
+        path: '/register',
+        component: RegisterComponent
     },
   ];
 
