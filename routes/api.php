@@ -13,10 +13,16 @@ use Illuminate\Http\Request;
 |
 */
 
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/auth', 'CustomerController@getAuth')->middleware('auth');
+
+
+
+//checkin
 Route::post('/checkIn/create', 'CheckInController@store');
 Route::get('/checkIn/edit/{id}', 'CheckInController@edit');
 Route::post('/checkIn/update/{id}', 'CheckInController@update');
@@ -25,7 +31,7 @@ Route::get('/checkIn', 'CheckInController@index');
 
 
 //DVD
-Route::post('/dvd/create', 'DvdController@store');
+Route::post('/dvd/create', 'DvdController@store')->name('dvd.create');;
 Route::get('/dvd/edit/{id}', 'DvdController@edit');
 Route::post('/dvd/update/{id}', 'DvdController@update');
 
@@ -35,7 +41,7 @@ Route::get('/dvd/autocomplete/search', 'DvdController@autocompleteSearch');
 
 
 //Customer
-Route::post('/customer/create', 'CustomerController@store');
+Route::post('/customer/create', 'CustomerController@store')->name('customer.create');
 Route::get('/customer/edit/{id}', 'CustomerController@edit');
 Route::post('/customer/update/{id}', 'CustomerController@update');
 Route::delete('/customer/delete/{id}', 'CustomerController@delete');

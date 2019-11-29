@@ -1,7 +1,7 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-use App\Refferals;
+use App\Customer;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
@@ -16,13 +16,15 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(Refferals::class, function (Faker $faker) {
+$factory->define(Customer::class, function (Faker $faker) {
     return [
+        '_token' => csrf_token(),
+        'name' => $this->faker->name,
+        'national_id' => '3222222',
+        'phone' => $this->faker->phone,
+        'address' => $this->faker->locale('en_GB'),
+            
        
-        'patient_name' => $faker->userName,
-        'patient_id' => $faker->unique(true)->numberBetween(1, 50),
-        'department_to' => $faker->word, 
-        'department_from'=> $faker->word,
 
     ];
 });

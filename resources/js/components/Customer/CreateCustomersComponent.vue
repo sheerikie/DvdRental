@@ -1,6 +1,12 @@
 <template>
-  <div>
+  <div class="container">
+        <div class="row justify-content-center">
+     <div class="col-md-8">
+                <div class="card" style="background:lightgray">
+                  <div class="card-header">
     <h1>Create Customer</h1>
+    </div>
+    <div class="card-body">
     <form @submit.prevent @click="addCustomer()">
       <div class="row">
         <div class="col-md-10">
@@ -37,6 +43,10 @@
           <button class="btn btn-primary">Create</button>
         </div>
     </form>
+   </div>
+  </div>
+  </div>
+   </div>
   </div>
 </template>
 

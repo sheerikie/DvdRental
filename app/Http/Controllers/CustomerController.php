@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Customer;
+use Auth;
 use App\Http\Resources\CustomerCollection;
 
 
@@ -116,4 +117,5 @@ class CustomerController extends Controller
     {
         //
     }
+
 }

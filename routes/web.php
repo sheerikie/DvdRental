@@ -13,7 +13,8 @@
 Auth::routes();
 
 Route::get('/{any}', function () {
-    return view('checkIn');
+    return view('layouts.app');
   })->where('any', '.*');
+
 
 

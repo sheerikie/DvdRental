@@ -1,7 +1,7 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-use App\Treatment;
+use App\Dvd;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
@@ -16,16 +16,14 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(Treatment::class, function (Faker $faker) {
+$factory->define(Dvd::class, function (Faker $faker) {
     return [
-        'patient_name' => $faker->userName,
-        'patient_id' => $faker->unique(true)->numberBetween(1, 50),
-        'disease' => $faker->word, 
-        'symptoms' => $faker->text,
-        'seen' => $faker->boolean(),
-        'doctor' => $faker->userName,
-        'department' => $faker->word,
-        'treatment' =>$faker->text
+        
+        'catalog' => $faker->userName,
+        'copies' => $faker->unique(true)->numberBetween(1, 20),
+        'availability' => '2', 
+        'genres' => 'Action', 
+       
 
     ];
 });

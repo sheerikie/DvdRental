@@ -8,17 +8,7 @@
                     <div class="card-body">
                       <h3>Manage Your Dvd Library With Ease</h3>
                     <div class="buttons" > 
-            <a type="button" class="btn btn-success"  href="/dvd"> 
-                Dvds
-            </a> 
-            <a type="button" class="btn btn-warning"  href="/customer"> 
-                Customers
-            </a> 
-              
            
-                <a type="button" class="btn btn-danger" href="/history"> 
-                   History
-                </a> 
               
         </div> 
     </div>  

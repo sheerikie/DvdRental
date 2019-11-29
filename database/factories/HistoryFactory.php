@@ -1,7 +1,7 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-use App\CheckIn;
+use App\History;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
@@ -16,13 +16,16 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(CheckIn::class, function (Faker $faker) {
+$factory->define(History::class, function (Faker $faker) {
     return [
+        
+        'customer_id' =>$faker->unique(true)->numberBetween(1, 20),
+        'dvd_id' => $faker->unique(true)->numberBetween(1, 20),
+        'borrowing_date' => $faker->date('H:i:s', rand(1,54000)), // 00:00:00 - 15:00:00;, 
+        'deadline_date' => $faker->date('H:i:s', rand(1,54000)), // 00:00:00 - 15:00:00;,
+        'return_date' => $faker->date('H:i:s', rand(1,54000)), // 00:00:00 - 15:00:00;,
+        'penalty' => '0', 
        
-        'patient_name' => $faker->userName,
-        'patient_id' => $faker->unique(true)->numberBetween(1, 50),
-        'entry_time' => $faker->date('H:i:s', rand(1,54000)), // 00:00:00 - 15:00:00;
-        'exit_time'=> $faker->date('H:i:s', rand(1,54000)) // 00:00:00 - 15:00:00;
 
     ];
 });

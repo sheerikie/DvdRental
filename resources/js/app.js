@@ -48,9 +48,7 @@ Vue.use(VueHtmlToPaper);
 
 Vue.use(VueSimpleAlert);
 import HomeComponent from './components/HomeComponent.vue';
-import CreateCheckInComponent from './components/CreateCheckInComponent.vue';
-import IndexCheckInComponent from './components/IndexCheckInComponent.vue';
-import EditCheckInComponent from './components/EditCheckInComponent.vue';
+import IndexComponent from './components/IndexComponent.vue';
 
 
 import CreateHistoryComponent from './components/History/CreateHistoryComponent.vue';
@@ -77,26 +75,17 @@ window.Fire = new Vue();
 
 const routes = [
     {
-        name: 'home',
+        name: 'index',
         path: '/',
+        component: IndexComponent
+    },
+    {
+        name: 'home',
+        path: '/home',
         component: HomeComponent
     },
   
-    {
-        name: 'checkInCreate',
-        path: '/checkIn/Create',
-        component: CreateCheckInComponent
-    },
-    {
-        name: 'CheckInIndex',
-        path: '/checkIn',
-        component: IndexCheckInComponent
-    },
-    {
-        name: 'CheckInEdit',
-        path: '/checkIn/edit/:id',
-        component: EditCheckInComponent
-    },
+    
 //History
     {
         name: 'HistoryCreate',
